@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Spleen Shop</title>
+<style>
+body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+header {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    font-weight: bold;
+}
+.shop {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 80px 20px 20px 20px;
+}
+.card {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+.card h3 {
+    margin: 10px 0;
+}
+.price {
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+<header>-1300 67 1500</header>
+<div class="shop" id="shop"></div>
+<script>
+const inventory = [
+    { name: "Фейерверки", price: 1, stock: 22, icon: "🎆" },
+    { name: "Золотая морковь", price: 2, stock: 9, icon: "🥕" }
+];const shop = document.getElementById('shop');
+
+function render() { shop.innerHTML = ""; inventory.forEach(item => { const card = document.createElement('div'); card.className = 'card'; card.innerHTML = <h3>${item.icon} ${item.name}</h3><div>В наличии: ${item.stock} стаков</div><div class="price">Цена: ${item.price} монет за стак</div>; shop.appendChild(card); }); }
+
+render(); </script>
+
+</body>
+</html>
