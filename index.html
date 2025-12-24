@@ -17,24 +17,27 @@ header {
     font-weight: bold;
 }
 .shop {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: flex;
     gap: 20px;
     padding: 80px 20px 20px 20px;
+    justify-content: flex-start;
 }
 .card {
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     border: 2px solid black;
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 4px;
+    width: 120px;
+    height: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    font-size: 14px;
 }
 .card h3 {
-    margin: 10px 0;
+    margin: 5px 0;
+    font-size: 16px;
 }
 .price {
     font-weight: bold;
@@ -46,11 +49,11 @@ header {
 <div class="shop" id="shop"></div>
 <script>
 const inventory = [
-    { name: "Фейерверки", price: 1, stock: 22, icon: "🎆" },
-    { name: "Золотая морковь", price: 2, stock: 9, icon: "🥕" }
+    { name: "Фейерверки", price: 1, stock: 22 },
+    { name: "Золотая морковь", price: 2, stock: 9 }
 ];const shop = document.getElementById('shop');
 
-function render() { shop.innerHTML = ""; inventory.forEach(item => { const card = document.createElement('div'); card.className = 'card'; card.innerHTML = <h3>${item.icon} ${item.name}</h3><div>В наличии: ${item.stock} стаков</div><div class="price">Цена: ${item.price} монет за стак</div>; shop.appendChild(card); }); }
+function render() { shop.innerHTML = ""; inventory.forEach(item => { const card = document.createElement('div'); card.className = 'card'; card.innerHTML = <div>${item.name}</div><div>В наличии: ${item.stock}</div><div class='price'>${item.price} монет</div>; shop.appendChild(card); }); }
 
 render(); </script>
 
