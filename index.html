@@ -21,7 +21,7 @@ header {
     display: flex;
     gap: 20px;
     padding: 80px 20px 20px 20px;
-    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 .card {
     background-color: white;
@@ -34,12 +34,11 @@ header {
     align-items: center;
     justify-content: center;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-    font-size: 14px;
     color: black;
+    font-size: 14px;
 }
-.card h3 {
+.card div {
     margin: 5px 0;
-    font-size: 16px;
 }
 .price {
     font-weight: bold;
@@ -50,14 +49,20 @@ header {
 <header>-1300 67 1500</header>
 <div class="shop" id="shop"></div>
 <script>
-const inventory = [
-    { name: "Фейерверки", price: 1, stock: 22 },
-    { name: "Золотая морковь", price: 2, stock: 9 }
-];const shop = document.getElementById('shop');
+window.onload = function() {
+    const inventory = [
+        { name: "Фейерверки", price: 1, stock: 22 },
+        { name: "Золотая морковь", price: 2, stock: 9 }
+    ];const shop = document.getElementById('shop');
 
-function render() { shop.innerHTML = ""; inventory.forEach(item => { const card = document.createElement('div'); card.className = 'card'; card.innerHTML = <div>${item.name}</div><div>В наличии: ${item.stock}</div><div class='price'>${item.price} монет</div>; shop.appendChild(card); }); }
+inventory.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<div>${item.name}</div><div>В наличии: ${item.stock}</div><div class='price'>${item.price} монет</div>`;
+    shop.appendChild(card);
+});
 
-render(); </script>
+}; </script>
 
 </body>
 </html>
