@@ -29,8 +29,12 @@ header {
 }
 .card:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(128,0,255,0.8);
-}.card { background-color: #8000ff; /* фиолетовый фон / border: 2px solid black; border-radius: 4px; width: 150px; height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.5); color: black; / текст черный */ font-size: 14px; padding: 10px; font-weight: bold; } .card div { margin: 5px 0; text-align: center; } .price { font-weight: bold; } .title { animation: glow 3s ease-in-out infinite; }
+    box-shadow: 0 0 25px rgba(180,100,255,1);
+}.card:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(128,0,255,0.8); }
+
+.card { background-color: #8000ff; /* фиолетовый фон / border: 2px solid black; border-radius: 4px; width: 150px; height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.5); color: black; / текст черный */ font-size: 14px; padding: 10px; font-weight: bold; } .card div { margin: 5px 0; text-align: center; } .price { font-weight: bold; } .title { color: #b066ff; }
+
+.title { animation: glow 3s ease-in-out infinite; }
 
 @keyframes glow { 0% { text-shadow: 0 0 5px #a070ff; } 50% { text-shadow: 0 0 12px #c5a0ff; } 100% { text-shadow: 0 0 5px #a070ff; } }
 
@@ -59,7 +63,7 @@ inventory.forEach(item => {
     card.className = 'card';
     card.innerHTML = `
 
-<img src="${item.img || ''}" style="width:64px;height:64px;image-rendering:pixelated;margin-bottom:5px;">
+<img src="${item.img}" style="width:64px;height:64px;image-rendering:pixelated;margin-bottom:5px;">
 <div>${item.name}</div><div>В наличии: ${item.stock || ''} ${item.unit || ''}</div><div class='price'>${item.price ? `Цена за ${item.unit}: ${item.price} монет` : ''}</div>${item.note ? `<div>${item.note}</div>` : ''}`; `<div>${item.name}</div><div>В наличии: ${item.stock} ${item.unit}</div><div class='price'>Цена за ${item.unit}: ${item.price} монет</div>${item.note ? `<div>${item.note}</div>` : ''}`;
         shop.appendChild(card);
     });
