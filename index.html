@@ -30,7 +30,11 @@ header {
 .card:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(128,0,255,0.8);
-}.card { background-color: #8000ff; /* фиолетовый фон / border: 2px solid black; border-radius: 4px; width: 150px; height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.5); color: black; / текст черный */ font-size: 14px; padding: 10px; font-weight: bold; } .card div { margin: 5px 0; text-align: center; } .price { font-weight: bold; } .title { text-align: center; margin-top: 20px; font-size: 36px; font-weight: bold; letter-spacing: 2px; }
+}.card { background-color: #8000ff; /* фиолетовый фон / border: 2px solid black; border-radius: 4px; width: 150px; height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.5); color: black; / текст черный */ font-size: 14px; padding: 10px; font-weight: bold; } .card div { margin: 5px 0; text-align: center; } .price { font-weight: bold; } .title { animation: glow 3s ease-in-out infinite; }
+
+@keyframes glow { 0% { text-shadow: 0 0 5px #a070ff; } 50% { text-shadow: 0 0 12px #c5a0ff; } 100% { text-shadow: 0 0 5px #a070ff; } }
+
+.title { text-align: center; margin-top: 20px; font-size: 36px; font-weight: bold; letter-spacing: 2px; }
 
 footer { color: white; text-align: center; margin-top: 20px; padding: 10px; } </style>
 
@@ -47,17 +51,7 @@ window.onload = function() {
         { name: "Золотая морковь", price: 2, stock: 9, unit: "стак", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/02/Golden_Carrot_JE2.png" },
         { name: "Маяки", price: 10, stock: 13, unit: "шт", note: "При покупке 2 и более цена за 1 уменьшается до 9", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/5c/Beacon_JE6.png" },
         { name: "Панцири шалкера", price: 2, stock: 2, unit: "16 шт", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Shulker_Shell_JE2.png" },
-        { name: "Элитры", price: 12, stock: 10, unit: "шт", note: "При покупке 3 и более цена за 1 уменьшается до 10", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7e/Elytra_JE2.png" },
-        { name: "(Пусто)", price: "", stock: "", unit: "" },
-        { name: "(Пусто)", price: "", stock: "", unit: "" },
-        { name: "(Пусто)", price: "", stock: "", unit: "" },
-        { name: "(Пусто)", price: "", stock: "", unit: "" },
-        { name: "(Пусто)", price: "", stock: "", unit: "" },
-        { name: "Фейерверки", price: 1, stock: 22, unit: "стак" },
-        { name: "Золотая морковь", price: 2, stock: 9, unit: "стак" },
-        { name: "Маяки", price: 10, stock: 13, unit: "шт", note: "При покупке 2 и более цена за 1 уменьшается до 9" },
-        { name: "Панцири шалкера", price: 2, stock: 2, unit: "16 шт" },
-        { name: "Элитры", price: 12, stock: 10, unit: "шт", note: "При покупке 3 и более цена за 1 уменьшается до 10" }
+        { name: "Элитры", price: 12, stock: 10, unit: "шт", note: "При покупке 3 и более цена за 1 уменьшается до 10", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7e/Elytra_JE2.png" }
     ];const shop = document.getElementById('shop');
 
 inventory.forEach(item => {
