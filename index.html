@@ -46,16 +46,18 @@ header {
 .price {
     font-weight: bold;
 }
-footer {
-    color: white;
+.title {
     text-align: center;
     margin-top: 20px;
-    padding: 10px;
-}
-</style>
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}footer { color: white; text-align: center; margin-top: 20px; padding: 10px; } </style>
+
 </head>
 <body>
 <header>-1300 67 1500</header>
+<h1 class="title">СПЛИН Shop</h1>
 <div class="shop" id="shop"></div>
 <footer>Если не появляются предметы, перезагрузите страницу</footer>
 <script>
@@ -64,7 +66,7 @@ window.onload = function() {
         { name: "Фейерверки", price: 1, stock: 22, unit: "стак" },
         { name: "Золотая морковь", price: 2, stock: 9, unit: "стак" },
         { name: "Маяки", price: 10, stock: 13, unit: "шт", note: "При покупке 2 и более цена за 1 уменьшается до 9" },
-        { name: "Панцири шалкера", price: 8, stock: 3, unit: "стак" },
+        { name: "Панцири шалкера", price: 2, stock: 2, unit: "16 шт" },
         { name: "Элитры", price: 12, stock: 10, unit: "шт", note: "При покупке 3 и более цена за 1 уменьшается до 10" }
     ];const shop = document.getElementById('shop');
 
