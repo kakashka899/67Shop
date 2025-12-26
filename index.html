@@ -10,7 +10,7 @@ body {
 
 .card:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(128,0,255,0.8); }
 
-.card { background-color: #8000ff; /* фиолетовый фон / border: 2px solid black; border-radius: 4px; width: 150px; height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.5); color: black; / текст черный */ font-size: 14px; padding: 10px; font-weight: bold; } .card div { margin: 5px 0; text-align: center; } .price { font-weight: bold; } .title { color: #b066ff; }
+.card { background-color: #8000ff; /* фиолетовый фон / border: 2px solid black; border-radius: 4px; width: 150px; height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.5); color: black; / текст черный */ font-size: 14px; padding: 10px; font-weight: bold; } .card div { margin: 5px 0; text-align: center; } .price { font-weight: bold; } .title { animation: glow 3s ease-in-out infinite; text-shadow: 0 0 6px #c5a0ff; } color: #b066ff; }
 
 .title { animation: glow 3s ease-in-out infinite; }
 
@@ -22,22 +22,22 @@ footer { color: white; text-align: center; margin-top: 20px; padding: 10px; } </
 
 </head>
 <body>
-<header>(скоро будет)</header>
+<header>-1300 67 1500</header>
 <h1 class="title">СПЛИН Shop</h1>
 <div class="shop" id="shop"></div>
 <div style="text-align:center;margin-top:20px;">
 <a href="https://discord.gg/Gh3s5sxv" target="_blank" style="color:#b066ff;font-weight:bold;text-decoration:none;">Перейти в Discord сервер</a>
 </div>
-<footer>Если что то не так, перезагрузите сайт</footer>
+<footer>Если что-то не так, перезагрузите сайт</footer>
 <script>
 window.onload = function() {
     const inventory = [
         { name: "Фейерверки", price: 1, stock: 22, unit: "стак", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7e/Firework_Rocket_JE3.png" },
         { name: "Золотая морковь", price: 2, stock: 9, unit: "стак", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/02/Golden_Carrot_JE2.png" },
-        { name: "Маяки", price: 10, stock: 13, unit: "шт", note: "При покупке 2 и более цена за 1 уменьшается до 9", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/5c/Beacon_JE6.png" },
-        { name: "Панцири шалкера", price: 2, stock: 2, unit: "16 шт", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/4c/Shulker_Shell_JE2.png" },
-        { name: "Элитры", price: 12, stock: 10, unit: "шт", note: "При покупке 3 и более цена за 1 уменьшается до 10", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7e/Elytra_JE2.png" }
-    ];const shop = document.getElementById('shop');
+        { name: "Маяки", price: 10, stock: 13, unit: "шт", note: "При покупке 2 и более цена за 1 уменьшается до 9", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/5c/Beacon_JE6.png" },{ name: "Элитры", price: 12, stock: 10, unit: "шт", note: "При покупке 3 и более цена за 1 уменьшается до 10", img: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7e/Elytra_JE2.png" }
+];
+
+const shop = document.getElementById('shop');
 
 inventory.forEach(item => {
     const card = document.createElement('div');
