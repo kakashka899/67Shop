@@ -47,6 +47,9 @@ footer { color: white; text-align: center; margin-top: 20px; padding: 10px; } </
 <header>-1300 67 1500</header>
 <h1 class="title">СПЛИН Shop</h1>
 <div class="shop" id="shop"></div>
+<div style="text-align:center;margin-top:20px;">
+<a href="https://discord.gg/Gh3s5sxv" target="_blank" style="color:#b066ff;font-weight:bold;text-decoration:none;">Перейти в Discord сервер</a>
+</div>
 <footer>Если не появляются предметы, перезагрузите страницу</footer>
 <script>
 window.onload = function() {
@@ -63,7 +66,6 @@ inventory.forEach(item => {
     card.className = 'card';
     card.innerHTML = `
 
-<img src="${item.img}" style="width:64px;height:64px;image-rendering:pixelated;margin-bottom:5px;">
 <div>${item.name}</div><div>В наличии: ${item.stock || ''} ${item.unit || ''}</div><div class='price'>${item.price ? `Цена за ${item.unit}: ${item.price} монет` : ''}</div>${item.note ? `<div>${item.note}</div>` : ''}`; `<div>${item.name}</div><div>В наличии: ${item.stock} ${item.unit}</div><div class='price'>Цена за ${item.unit}: ${item.price} монет</div>${item.note ? `<div>${item.note}</div>` : ''}`;
         shop.appendChild(card);
     });
