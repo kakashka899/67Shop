@@ -6,39 +6,101 @@
 body {
     background: radial-gradient(circle at center, #2b0040 0%, #000 65%);
     overflow-x: hidden;
-}body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(1px 1px at 10% 20%, #fff, transparent), radial-gradient(1px 1px at 30% 80%, #fff, transparent), radial-gradient(1px 1px at 50% 50%, #fff, transparent), radial-gradient(1px 1px at 70% 30%, #fff, transparent), radial-gradient(1px 1px at 90% 70%, #fff, transparent); background-size: 250px 250px; opacity: 0.6; pointer-events: none; } background-color: black; font-family: Arial, sans-serif; margin: 0; padding: 0; color: white; } header { position: fixed; top: 10px; right: 20px; } .menu-toggle{position:fixed;top:40px;right:20px;color:#b066ff;font-weight:bold;cursor:pointer;} .menu.hidden{display:none;} .menu { position: fixed; top: 70px; right: 20px; display: flex; flex-direction: column; gap: 10px; } position: fixed; top: 40px; right: 20px; display: flex; gap: 10px; } .menu a { color: #b066ff; text-decoration: none; font-weight: bold; font-size: 14px; } .menu a:hover { text-shadow: 0 0 8px #c5a0ff; }
-
-header { position: fixed; top: 10px; right: 20px; font-weight: bold; color: white; } .shop { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 25px; padding: 120px 40px 40px 40px; justify-items: center; } .card { transition: 0.2s; } .card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(180,100,255,1); }
-
-.card:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(128,0,255,0.8); }
-
-.card { background-color: #8000ff; /* фиолетовый фон / border: 2px solid black; border-radius: 4px; width: 150px; height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.5); color: black; / текст черный */ font-size: 14px; padding: 10px; font-weight: bold; } .card div { margin: 5px 0; text-align: center; } .price { font-weight: bold; } .title { color: #b066ff; animation: glow 3s ease-in-out infinite; text-shadow: 0 0 6px #c5a0ff; text-align: center; margin-top: 20px; font-size: 36px; font-weight: bold; letter-spacing: 2px; } color: #b066ff; }
-
-.title { animation: glow 3s ease-in-out infinite; }
-
-@keyframes glow { 0% { text-shadow: 0 0 5px #a070ff; } 50% { text-shadow: 0 0 12px #c5a0ff; } 100% { text-shadow: 0 0 5px #a070ff; } }
-
-.title { text-align: center; margin-top: 20px; font-size: 36px; font-weight: bold; letter-spacing: 2px; }
-
-footer { color: white; text-align: center; margin-top: 20px; padding: 10px; } </style>
-
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, #fff, transparent),
+      radial-gradient(1px 1px at 30% 80%, #fff, transparent),
+      radial-gradient(1px 1px at 50% 50%, #fff, transparent),
+      radial-gradient(1px 1px at 70% 30%, #fff, transparent),
+      radial-gradient(1px 1px at 90% 70%, #fff, transparent);
+    background-size: 250px 250px;
+    opacity: 0.6;
+    pointer-events: none;
+}
+.title {
+    color: #b066ff;
+    animation: glow 3s ease-in-out infinite;
+    text-shadow: 0 0 6px #c5a0ff;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+@keyframes glow {
+  0% { text-shadow: 0 0 5px #a070ff; }
+  50% { text-shadow: 0 0 12px #c5a0ff; }
+  100% { text-shadow: 0 0 5px #a070ff; }
+}
+.shop {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 25px;
+    padding: 120px 40px 40px 40px;
+    justify-items: center;
+}
+.card {
+    background-color: #8000ff;
+    border: 2px solid black;
+    border-radius: 4px;
+    width: 150px;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    color: black;
+    font-size: 14px;
+    padding: 10px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(180,100,255,1);
+}
+.card div {
+    margin: 5px 0;
+    text-align: center;
+}
+.price {
+    font-weight: bold;
+}
+footer {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+}
+</style>
 </head>
-<body><h1 class="title">СПЛИН Shop</h1>
+<body>
+<h1 class="title">СПЛИН Shop</h1>
 <div class="shop" id="shop"></div>
-<div style="text-align:center;margin-top:20px;">
-<a href="https://discord.gg/Gh3s5sxv" target="_blank" style="color:#b066ff;font-weight:bold;text-decoration:none;">Перейти в Discord сервер</a>
-</div>
-<footer>Если не появляются предметы, перезагрузите страницу</footer>
+<footer>Если не появляются товары, перезагрузите страницу</footer>
 <script>
 const inventory = [
-  { name: "Фейерверки", price: 1, stock: 22, unit: "стак" },
-  { name: "Золотая морковь", price: 2, stock: 9, unit: "стак" },
-  { name: "Маяки", price: 10, stock: 13, unit: "шт", note: "При покупке 2 и более цена за 1 уменьшается до 9" },
-  { name: "Элитры", price: 12, stock: 10, unit: "шт", note: "При покупке 3 и более цена за 1 уменьшается до 10" },
-  { name: "Железо", price: 1, stock: 32, unit: "2 стака" }
+    { name: "Фейерверки", price: 1, stock: 22, unit: "стак" },
+    { name: "Золотая морковь", price: 2, stock: 9, unit: "стак" },
+    { name: "Маяки", price: 10, stock: 13, unit: "шт", note: "При покупке 2 и более цена за 1 уменьшается до 9" },
+    { name: "Элитры", price: 12, stock: 10, unit: "шт", note: "При покупке 3 и более цена за 1 уменьшается до 10" },
+    { name: "Железо", price: 1, stock: 32, unit: "2 стака" },
+    { name: "Порох", price: 1, stock: 40, unit: "стак" },
+    { name: "Трасник", price: 1, stock: 20, unit: "стак" },
+    { name: "Обсидиан", price: 4, stock: 10, unit: "стак" },
+    { name: "Панцири шалкеров", price: 4, stock: 4, unit: "стак" }
 ];const shop = document.getElementById('shop');
 
-function render() { shop.innerHTML = ""; inventory.forEach(item => { const card = document.createElement('div'); card.className = 'card'; card.innerHTML = <div>${item.name}</div> <div>В наличии: ${item.stock} ${item.unit}</div> <div class="price">Цена: ${item.price} монет</div> ${item.note ?<div>${item.note}</div>: ``}; shop.appendChild(card); }); }
+function render() { shop.innerHTML = ""; inventory.forEach(item => { const card = document.createElement('div'); card.className = 'card'; card.innerHTML = <div>${item.name}</div><div>В наличии: ${item.stock} ${item.unit}</div><div class='price'>Цена: ${item.price} монет</div>${item.note ? <div>${item.note}</div> : ''}; shop.appendChild(card); }); }
 
 render(); </script>
 
