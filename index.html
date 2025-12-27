@@ -6,7 +6,7 @@
 body {
     background: radial-gradient(circle at center, #2b0040 0%, #000 65%);
     overflow-x: hidden;
-}body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(1px 1px at 10% 20%, #fff, transparent), radial-gradient(1px 1px at 30% 80%, #fff, transparent), radial-gradient(1px 1px at 50% 50%, #fff, transparent), radial-gradient(1px 1px at 70% 30%, #fff, transparent), radial-gradient(1px 1px at 90% 70%, #fff, transparent); background-size: 250px 250px; opacity: 0.6; pointer-events: none; } background-color: black; font-family: Arial, sans-serif; margin: 0; padding: 0; color: white; } header { position: fixed; top: 10px; right: 20px; } .menu { position: fixed; top: 40px; right: 20px; display: flex; gap: 10px; } .menu a { color: #b066ff; text-decoration: none; font-weight: bold; font-size: 14px; } .menu a:hover { text-shadow: 0 0 8px #c5a0ff; }
+}body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(1px 1px at 10% 20%, #fff, transparent), radial-gradient(1px 1px at 30% 80%, #fff, transparent), radial-gradient(1px 1px at 50% 50%, #fff, transparent), radial-gradient(1px 1px at 70% 30%, #fff, transparent), radial-gradient(1px 1px at 90% 70%, #fff, transparent); background-size: 250px 250px; opacity: 0.6; pointer-events: none; } background-color: black; font-family: Arial, sans-serif; margin: 0; padding: 0; color: white; } header { position: fixed; top: 10px; right: 20px; } .menu-toggle{position:fixed;top:40px;right:20px;color:#b066ff;font-weight:bold;cursor:pointer;} .menu.hidden{display:none;} .menu { position: fixed; top: 70px; right: 20px; display: flex; flex-direction: column; gap: 10px; } position: fixed; top: 40px; right: 20px; display: flex; gap: 10px; } .menu a { color: #b066ff; text-decoration: none; font-weight: bold; font-size: 14px; } .menu a:hover { text-shadow: 0 0 8px #c5a0ff; }
 
 header { position: fixed; top: 10px; right: 20px; font-weight: bold; color: white; } .shop { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 25px; padding: 120px 40px 40px 40px; justify-items: center; } .card { transition: 0.2s; } .card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(180,100,255,1); }
 
@@ -25,7 +25,8 @@ footer { color: white; text-align: center; margin-top: 20px; padding: 10px; } </
 </head>
 <body>
 <header>-1300 67 1500</header>
-<nav class="menu">
+<div class="menu-toggle">☰ Категории</div>
+<nav class="menu hidden">
   <a href="#">Еда</a>
   <a href="#">Броня</a>
   <a href="#">Расходники</a>
@@ -64,7 +65,7 @@ inventory.filter(item => category === "Все" || item.category === category)
 <div>${item.name}</div><div>В наличии: ${item.stock || ''} ${item.unit || ''}</div><div class='price'>${item.price ? `Цена за ${item.unit}: ${item.price} монет` : ''}</div>${item.note ? `<div>${item.note}</div>` : ''}`; `<div>${item.name}</div><div>В наличии: ${item.stock} ${item.unit}</div><div class='price'>Цена за ${item.unit}: ${item.price} монет</div>${item.note ? `<div>${item.note}</div>` : ''}`;
         shop.appendChild(card);
     });
-}render();
+}render('Все'); const toggle=document.querySelector('.menu-toggle'); const menu=document.querySelector('.menu'); toggle.onclick=()=>menu.classList.toggle('hidden');
 
 document.querySelectorAll('.menu a').forEach(btn => { btn.onclick = () => { const cat = btn.textContent; render(cat === 'Главная' ? 'Все' : cat); }; }); }); }; </script>
 
