@@ -24,17 +24,7 @@ footer { color: white; text-align: center; margin-top: 20px; padding: 10px; } </
 
 </head>
 <body>
-<header>-1300 67 1500</header>
-<div class="menu-toggle">☰ Категории</div>
-<nav class="menu hidden">
-  <a href="#">Еда</a>
-  <a href="#">Броня</a>
-  <a href="#">Расходники</a>
-  <a href="#">Ресурсы</a>
-  <a href="#">Наборы</a>
-  <a href="#">Строй материалы</a>
-</nav>
-<h1 class="title">СПЛИН Shop</h1>
+<header>-1300 67 1500</header><h1 class="title">СПЛИН Shop</h1>
 <div class="shop" id="shop"></div>
 <div style="text-align:center;margin-top:20px;">
 <a href="https://discord.gg/Gh3s5sxv" target="_blank" style="color:#b066ff;font-weight:bold;text-decoration:none;">Перейти в Discord сервер</a>
@@ -65,7 +55,7 @@ inventory.filter(item => category === "Все" || item.category === category)
 <div>${item.name}</div><div>В наличии: ${item.stock || ''} ${item.unit || ''}</div><div class='price'>${item.price ? `Цена за ${item.unit}: ${item.price} монет` : ''}</div>${item.note ? `<div>${item.note}</div>` : ''}`; `<div>${item.name}</div><div>В наличии: ${item.stock} ${item.unit}</div><div class='price'>Цена за ${item.unit}: ${item.price} монет</div>${item.note ? `<div>${item.note}</div>` : ''}`;
         shop.appendChild(card);
     });
-}render('Все'); const toggle=document.querySelector('.menu-toggle'); const menu=document.querySelector('.menu'); toggle.onclick=()=>menu.classList.toggle('hidden');
+}render('Все');
 
 document.querySelectorAll('.menu a').forEach(btn => { btn.onclick = () => { const cat = btn.textContent; render(cat === 'Главная' ? 'Все' : cat); }; }); }); }; </script>
 
