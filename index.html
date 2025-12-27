@@ -51,8 +51,8 @@ body::before {
     background-color: #8000ff;
     border: 2px solid black;
     border-radius: 4px;
-    width: 180px;
-    height: auto;
+    width: 150px;
+    height: 220px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,6 +71,9 @@ body::before {
 .card div {
     margin: 5px 0;
     text-align: center;
+}
+.price {
+    font-weight: bold;
 }
 footer {
     color: white;
@@ -113,9 +116,9 @@ window.addEventListener('DOMContentLoaded', () => {
 inventory.forEach(item => {
     const card = document.createElement('div');
     card.className = 'card';
-    let text = `${item.name} цена за ${item.unit === 'шт' ? 'шт' : 'стак'} ${item.price} монет в наличии ${item.stock}`;
-    if(item.note) text += ` ${item.note}`;
-    card.innerHTML = `<div>${text}</div>`;
+    const lines = [`${item.name}`, `Цена за ${item.unit}: ${item.price} монет`, `В наличии: ${item.stock}`];
+    if(item.note) lines.push(item.note);
+    card.innerHTML = lines.map(line => `<div>${line}</div>`).join('');
     shop.appendChild(card);
 });
 
