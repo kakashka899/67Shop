@@ -13,7 +13,11 @@ body {
     position: relative;
 }
 #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-.main { width: 55%; padding: 20px 30px; z-index: 1; }
+.main {
+    width: calc(100% - 28%);
+    padding: 20px 30px;
+    z-index: 1;
+}
 .title { text-align: center; font-size: 36px; color: #a855ff; margin-bottom: 20px; text-shadow: 0 0 12px rgba(168, 85, 255, 0.6); }
 .controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .controls input { padding: 6px 10px; border-radius: 8px; border: none; width: 180px; font-size: 14px; box-shadow: 0 0 6px rgba(160,85,255,0.5); }
@@ -25,7 +29,7 @@ body {
 .card div { margin: 8px 0; transition: 0.3s; }
 .add-btn { margin-top: 12px; padding: 10px; width: 100%; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 14px; background: linear-gradient(90deg, #000, #1a001f); color: #c084fc; transition: 0.3s; }
 .add-btn:hover { background: linear-gradient(90deg, #1a001f, #000); box-shadow: 0 0 15px #a855ff; transform: scale(1.05); }
-.cart { width: 28%; min-height: 100vh; background: #120018; padding: 20px; border-left: 3px solid #6a00cc; box-shadow: -6px 0 15px rgba(150, 0, 255, 0.4); z-index: 1; transition: background 0.5s; }
+.cart { width: 28%; min-height: 100vh; background: transparent; padding: 20px; border-left: 3px solid #6a00cc; box-shadow: -6px 0 15px rgba(150, 0, 255, 0.4); z-index: 1; transition: background 0.5s; position: fixed; right: 0; top: 0; }
 .cart h2 { text-align: center; color: #a855ff; font-size: 26px; text-shadow: 0 0 6px rgba(168,85,255,0.5);} 
 .cart-item { margin: 15px 0; padding: 14px; background: #1f002b; border-radius: 14px; transition: 0.3s; }
 .cart-item:hover { box-shadow: 0 0 15px rgba(190,120,255,0.6); }
@@ -41,6 +45,12 @@ body {
 #settingsPanel button { margin:5px; padding:5px 10px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; transition:0.3s;}
 #settingsPanel button:hover { transform: scale(1.05); box-shadow:0 0 10px rgba(168,85,255,0.5); }
 #volumeControl { width: 100%; margin-top: 10px; }
+#blockBlastBtn { position: fixed; top: 20px; left: 20px; padding: 10px 15px; background: #a855ff; color: black; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; z-index: 3; transition:0.3s; }
+#blockBlastBtn:hover { transform: scale(1.05); box-shadow:0 0 15px rgba(190,120,255,0.5); }
+#blockBlastWindow { display:none; position: fixed; top: 80px; left: 20px; width: 600px; height: 400px; background: #1a001f; border:3px solid #6a00cc; border-radius:12px; z-index:4; padding:10px; }
+#blockBlastHeader { display:flex; justify-content:space-between; align-items:center; }
+#blockBlastHeader span { color: #a855ff; font-weight:bold; }
+#blockBlastGame { margin-top:10px; width:100%; height:340px; background:#2b0040; border-radius:10px; display:flex; align-items:center; justify-content:center; color:white; font-size:24px; font-weight:bold; }
 </style>
 </head>
 <body>
@@ -48,6 +58,11 @@ body {
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 <canvas id="particles"></canvas>
+<div id="blockBlastBtn" onclick="toggleBlockBlast()">Блок Бласт</div>
+<div id="blockBlastWindow">
+    <div id="blockBlastHeader">Блок Бласт <span id="bbBestScore">Best: 0</span></div>
+    <div id="blockBlastGame">Нажмите пробел чтобы играть</div>
+</div>
 <div class="main">
     <div class="title">67Shop</div>
     <div class="controls">
@@ -102,21 +117,33 @@ function toggleSettings(){ const panel=document.getElementById('settingsPanel');
 function setBackground(type){
 if(type==='base'){
   document.body.style.background='radial-gradient(circle at center, #2b0040 0%, #000 70%)';
-  document.querySelector('.cart').style.background='#120018';
+  document.querySelector('.cart').style.background='transparent';
   document.getElementById('settingsPanel').style.background='#1a001f';
   particles.forEach(p=>p.r=2);
 }else if(type==='black'){
   document.body.style.background='black';
-  document.querySelector('.cart').style.background='#120018';
+  document.querySelector('.cart').style.background='transparent';
   document.getElementById('settingsPanel').style.background='#1a001f';
   particles.forEach(p=>p.r=2);
 }else if(type==='white'){
   document.body.style.background='white';
-  document.querySelector('.cart').style.background='#f0f0f0';
+  document.querySelector('.cart').style.background='transparent';
   document.getElementById('settingsPanel').style.background='#e0e0e0';
   particles.forEach(p=>p.r=2);
 }}
+function toggleBlockBlast(){
+ const win=document.getElementById('blockBlastWindow');
+ win.style.display=win.style.display==='none'?'block':'none';
+}
+// Блок Бласт минимальная логика
+let bbScore=0; const bbBestScoreEl=document.getElementById('bbBestScore'); let bbBestScore=localStorage.getItem('bbBestScore')||0; bbBestScoreEl.innerText='Best: '+bbBestScore;
+const bbGame=document.getElementById('blockBlastGame');
+let bbActive=false;
+document.addEventListener('keydown', e=>{
+ if(e.code==='Space' && bbActive){ bbScore++; if(bbScore>bbBestScore){bbBestScore=bbScore; localStorage.setItem('bbBestScore', bbBestScore); bbBestScoreEl.innerText='Best: '+bbBestScore;} }
+});
+bbGame.addEventListener('click', ()=>{ bbScore=0; bbActive=true; bbGame.innerText='Играй! Нажимай пробел!'; setTimeout(()=>{ bbActive=false; bbGame.innerText='Нажмите пробел чтобы играть'; },5000); });
 renderShop();
 </script>
 </body>
-</html>
+        </html>
