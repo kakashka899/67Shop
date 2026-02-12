@@ -15,13 +15,13 @@ body {
 #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 .main {
     width: calc(100% - 28%);
-    padding: 20px 30px;
+    padding: 20px 20px 20px 30px;
     z-index: 1;
 }
 .title { text-align: center; font-size: 36px; color: #a855ff; margin-bottom: 20px; text-shadow: 0 0 12px rgba(168, 85, 255, 0.6); }
-.controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; z-index:1; position: relative; }
+.controls { display: flex; justify-content: flex-start; align-items: center; margin-bottom: 20px; z-index:1; position: relative; gap: 20px; }
 .controls input { padding: 6px 10px; border-radius: 8px; border: none; width: 180px; font-size: 14px; box-shadow: 0 0 6px rgba(160,85,255,0.5); }
-.controls button { padding: 6px 10px; border-radius: 8px; border: none; background: #6a00cc; color: black; font-weight: bold; cursor: pointer; transition: 0.25s; margin-left: 10px; }
+.controls button { padding: 6px 10px; border-radius: 8px; border: none; background: #6a00cc; color: black; font-weight: bold; cursor: pointer; transition: 0.25s; }
 .controls button:hover { background: #8b00ff; transform: scale(1.05); box-shadow: 0 0 10px rgba(190,120,255,0.6); }
 .shop { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; }
 .card { background: linear-gradient(145deg, #8b00ff, #6a00cc); width: 250px; padding: 25px; border-radius: 16px; color: black; font-weight: bold; transition: 0.3s ease; box-shadow: 0 0 15px rgba(160, 80, 255, 0.4); position: relative; cursor: pointer; }
