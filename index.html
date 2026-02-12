@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>67 Shop</title>
+<title>67Shop</title>
 <style>
 body {
     background: radial-gradient(circle at center, #2b0040 0%, #000 65%);
@@ -27,14 +27,22 @@ body {
 .card {
     background-color: #8000ff;
     border: 2px solid black;
-    border-radius: 6px;
-    width: 260px;
+    border-radius: 8px;
+    width: 270px;
     padding: 15px;
     font-weight: bold;
     color: black;
+    transition: all 0.25s ease;
+}
+.card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 0 25px rgba(180,100,255,0.9);
 }
 .card div {
     margin: 6px 0;
+}
+.status {
+    color: darkgreen;
 }
 details {
     background: rgba(255,255,255,0.3);
@@ -46,20 +54,53 @@ summary {
     cursor: pointer;
     font-weight: bold;
 }
+input {
+    width: 60px;
+}
+button {
+    margin-top: 5px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+.order-block {
+    text-align:center; 
+    margin-bottom:30px; 
+    font-weight:bold;
+}
+.order-block a {
+    color:#b066ff; 
+    text-decoration:none;
+}
+.order-block a:hover {
+    text-shadow: 0 0 8px #c5a0ff;
+}
 </style>
 </head>
 <body>
 <h1 class="title">67Shop</h1>
 <div class="shop"><div class="card">
     <div>Маяк</div>
+    <div class="status">Статус: В наличии</div>
     <div>В наличии: 14</div>
     <div>Цена за шт: 10 монет</div>
+    <div>При покупке 3 и более цена за шт: 9 монет</div>
+    <div>
+        Кол-во: <input type="number" min="1" value="1" id="beaconQty">
+        <button onclick="calcBeacon()">Посчитать</button>
+        <div id="beaconTotal"></div>
+    </div>
 </div>
 
 <div class="card">
     <div>Незер сет брони</div>
+    <div class="status">Статус: В наличии</div>
     <div>В наличии: 6</div>
     <div>Цена за сет: 50 монет</div>
+    <div>
+        Кол-во: <input type="number" min="1" value="1" id="setQty">
+        <button onclick="calcSet()">Посчитать</button>
+        <div id="setTotal"></div>
+    </div>
 
     <details>
         <summary>Шлем</summary>
@@ -96,12 +137,34 @@ summary {
 
 <div class="card">
     <div>Зачарованные золотые яблоки</div>
+    <div class="status">Статус: В наличии</div>
     <div>В наличии: 30</div>
     <div>Цена за шт: 4 монеты</div>
+    <div>
+        Кол-во: <input type="number" min="1" value="1" id="appleQty">
+        <button onclick="calcApple()">Посчитать</button>
+        <div id="appleTotal"></div>
+    </div>
 </div>
 
-</div><div style="text-align:center; margin-bottom:30px; font-weight:bold;">
+</div><div class="order-block">
     Сделать заказы тут:<br>
-    <a href="https://discord.gg/QcfekhuEU" target="_blank" style="color:#b066ff; text-decoration:none;">https://discord.gg/QcfekhuEU</a>
-</div></body>
-</html>
+    <a href="https://discord.gg/QcfekhuEU" target="_blank">https://discord.gg/QcfekhuEU</a>
+</div><script>
+function calcBeacon() {
+    let qty = parseInt(document.getElementById('beaconQty').value);
+    let price = qty >= 3 ? 9 : 10;
+    document.getElementById('beaconTotal').innerText = "Итого: " + (qty * price) + " монет";
+}
+
+function calcSet() {
+    let qty = parseInt(document.getElementById('setQty').value);
+    document.getElementById('setTotal').innerText = "Итого: " + (qty * 50) + " монет";
+}
+
+function calcApple() {
+    let qty = parseInt(document.getElementById('appleQty').value);
+    document.getElementById('appleTotal').innerText = "Итого: " + (qty * 4) + " монет";
+}
+</script></body>
+    </html>
