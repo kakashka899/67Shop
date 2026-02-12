@@ -5,124 +5,90 @@
 <style>
 body {
     background: radial-gradient(circle at center, #2b0040 0%, #000 65%);
-    overflow-x: hidden;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: white;
 }
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(1px 1px at 10% 20%, #fff, transparent),
-      radial-gradient(1px 1px at 30% 80%, #fff, transparent),
-      radial-gradient(1px 1px at 50% 50%, #fff, transparent),
-      radial-gradient(1px 1px at 70% 30%, #fff, transparent),
-      radial-gradient(1px 1px at 90% 70%, #fff, transparent);
-    background-size: 250px 250px;
-    opacity: 0.6;
-    pointer-events: none;
-}
 .title {
     color: #b066ff;
-    animation: glow 3s ease-in-out infinite;
-    text-shadow: 0 0 6px #c5a0ff;
     text-align: center;
     margin-top: 20px;
     font-size: 36px;
     font-weight: bold;
-    letter-spacing: 2px;
-}
-@keyframes glow {
-  0% { text-shadow: 0 0 5px #a070ff; }
-  50% { text-shadow: 0 0 12px #c5a0ff; }
-  100% { text-shadow: 0 0 5px #a070ff; }
 }
 .shop {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 25px;
-    padding: 120px 40px 40px 40px;
-    justify-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 100px 20px 40px 20px;
 }
 .card {
     background-color: #8000ff;
     border: 2px solid black;
-    border-radius: 4px;
-    width: 150px;
-    height: 220px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-    color: black;
-    font-size: 14px;
-    padding: 10px;
+    border-radius: 6px;
+    width: 260px;
+    padding: 15px;
     font-weight: bold;
-    transition: 0.2s;
-}
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(180,100,255,1);
+    color: black;
 }
 .card div {
-    margin: 5px 0;
-    text-align: center;
+    margin: 6px 0;
 }
-.price {
+details {
+    background: rgba(255,255,255,0.3);
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+summary {
+    cursor: pointer;
     font-weight: bold;
-}
-footer {
-    color: white;
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-}
-.discord-link {
-    display: block;
-    text-align: center;
-    margin: 10px;
-    font-weight: bold;
-    color: #b066ff;
-    text-decoration: none;
-}
-.discord-link:hover {
-    text-shadow: 0 0 8px #c5a0ff;
 }
 </style>
 </head>
 <body>
 <h1 class="title">СПЛИН Shop</h1>
-<div class="shop" id="shop"></div>
-<a href="https://discord.gg/Gh3s5sxv" target="_blank" class="discord-link">Перейти в Discord сервер</a>
-<footer>Если не появляются предметы, перезагрузите страницу</footer>
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-    const inventory = [
-        { name: "Фейерверки", price: 1, stock: 22, unit: "стак", note: "" },
-        { name: "Золотая морковь", price: 2, stock: 9, unit: "стак", note: "" },
-        { name: "Маяки", price: 10, stock: 13, unit: "шт", note: "При покупке 2 и более цена за шт уменьшается до 9" },
-        { name: "Элитры", price: 12, stock: 10, unit: "шт", note: "При покупке 3 и более цена за шт уменьшается до 10" },
-        { name: "Железо", price: 1, stock: 32, unit: "стак", note: "" },
-        { name: "Порох", price: 1, stock: 40, unit: "стак", note: "" },
-        { name: "Трасник", price: 1, stock: 20, unit: "стак", note: "" },
-        { name: "Обсидиан", price: 4, stock: 10, unit: "стак", note: "" },
-        { name: "Панцири шалкеров", price: 8, stock: 0, unit: "стак", note: "" }
-    ];const shop = document.getElementById('shop');
+<div class="shop">
+    <div class="card">
+        <div>Маяк</div>
+        <div>В наличии: 14</div>
+        <div>Цена за шт: 10 монет</div>
+        <hr>
+        <div>Незер сет брони</div>
+        <div>В наличии: 6</div>
+        <div>Цена за сет: 50 монет</div><details>
+        <summary>Шлем</summary>
+        Защита 4<br>
+        Прочность 3<br>
+        Починка<br>
+        Подводное дыхание 3<br>
+        Подводник
+    </details>
 
-inventory.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    const lines = [`${item.name}`, `Цена за ${item.unit}: ${item.price} монет`, `В наличии: ${item.stock}`];
-    if(item.note) lines.push(item.note);
-    card.innerHTML = lines.map(line => `<div>${line}</div>`).join('');
-    shop.appendChild(card);
-});
+    <details>
+        <summary>Нагрудник</summary>
+        Защита 4<br>
+        Прочность 3<br>
+        Починка
+    </details>
 
-}); </script>
+    <details>
+        <summary>Штаны</summary>
+        Защита 4<br>
+        Прочность 3<br>
+        Починка
+    </details>
 
+    <details>
+        <summary>Ботинки</summary>
+        Защита 4<br>
+        Прочность 3<br>
+        Починка<br>
+        Подводная ходьба 3<br>
+        Невесомость 4
+    </details>
+</div>
+
+</div>
 </body>
-</html>
+    </html>
