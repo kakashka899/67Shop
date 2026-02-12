@@ -19,9 +19,9 @@ body {
     z-index: 1;
 }
 .title { text-align: center; font-size: 36px; color: #a855ff; margin-bottom: 20px; text-shadow: 0 0 12px rgba(168, 85, 255, 0.6); }
-.controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; z-index:1; position: relative; }
 .controls input { padding: 6px 10px; border-radius: 8px; border: none; width: 180px; font-size: 14px; box-shadow: 0 0 6px rgba(160,85,255,0.5); }
-.controls button { padding: 6px 10px; border-radius: 8px; border: none; background: #6a00cc; color: black; font-weight: bold; cursor: pointer; transition: 0.25s; }
+.controls button { padding: 6px 10px; border-radius: 8px; border: none; background: #6a00cc; color: black; font-weight: bold; cursor: pointer; transition: 0.25s; margin-left: 10px; }
 .controls button:hover { background: #8b00ff; transform: scale(1.05); box-shadow: 0 0 10px rgba(190,120,255,0.6); }
 .shop { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; }
 .card { background: linear-gradient(145deg, #8b00ff, #6a00cc); width: 250px; padding: 25px; border-radius: 16px; color: black; font-weight: bold; transition: 0.3s ease; box-shadow: 0 0 15px rgba(160, 80, 255, 0.4); position: relative; cursor: pointer; }
@@ -44,25 +44,11 @@ body {
 #settingsPanel { display:none; position: fixed; bottom:70px; left:20px; width:200px; background:#1a001f; border:2px solid #6a00cc; border-radius:12px; padding:10px; z-index:2; transition: background 0.5s;}
 #settingsPanel button { margin:5px; padding:5px 10px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; transition:0.3s;}
 #settingsPanel button:hover { transform: scale(1.05); box-shadow:0 0 10px rgba(168,85,255,0.5); }
-#volumeControl { width: 100%; margin-top: 10px; }
-#blockBlastBtn { position: fixed; top: 20px; left: 20px; padding: 10px 15px; background: #a855ff; color: black; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; z-index: 3; transition:0.3s; }
-#blockBlastBtn:hover { transform: scale(1.05); box-shadow:0 0 15px rgba(190,120,255,0.5); }
-#blockBlastWindow { display:none; position: fixed; top: 80px; left: 20px; width: 600px; height: 400px; background: #1a001f; border:3px solid #6a00cc; border-radius:12px; z-index:4; padding:10px; }
-#blockBlastHeader { display:flex; justify-content:space-between; align-items:center; }
-#blockBlastHeader span { color: #a855ff; font-weight:bold; }
-#blockBlastGame { margin-top:10px; width:100%; height:340px; background:#2b0040; border-radius:10px; display:flex; align-items:center; justify-content:center; color:white; font-size:24px; font-weight:bold; }
+#volumeControl { display:none; }
 </style>
 </head>
 <body>
-<audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
 <canvas id="particles"></canvas>
-<div id="blockBlastBtn" onclick="toggleBlockBlast()">Блок Бласт</div>
-<div id="blockBlastWindow">
-    <div id="blockBlastHeader">Блок Бласт <span id="bbBestScore">Best: 0</span></div>
-    <div id="blockBlastGame">Нажмите пробел чтобы играть</div>
-</div>
 <div class="main">
     <div class="title">67Shop</div>
     <div class="controls">
@@ -87,23 +73,16 @@ body {
     <button onclick='setBackground("base")'>Базовый</button>
     <button onclick='setBackground("black")'>Черный</button>
     <button onclick='setBackground("white")'>Белый</button>
-    <div>Громкость музыки:</div>
-    <input type="range" id="volumeControl" min="0" max="100" value="50" oninput="changeVolume(this.value)">
-    <button onclick="toggleMusic()" style="margin-top:5px; width:100%;">Вкл/Выкл Музыку</button>
 </div>
 <script>
 let inventory = [
     { name: "Маяк", price: 10, stock: 14, discountQty: 3, discountPrice: 9 },
     { name: "Незер сет брони", price: 50, stock: 6 },
     { name: "Зачарованные золотые яблоки", price: 4, stock: 30 },
-    { name: "Фаерверки", price: 1, stock: 8 }
+    { name: "Фаерверки", price: 1, stock: 8 },
+    { name: "Незеритовая кирка", price: 15, stock: 7 }
 ];
 let cart = {}, sortAsc = true;
-const music = document.getElementById('bgMusic');
-music.volume = 0.5;
-music.play();
-function changeVolume(value){ music.volume = value/100; }
-function toggleMusic(){ if(music.paused) music.play(); else music.pause(); }
 function renderShop(){const shop=document.getElementById('shop'); shop.innerHTML=''; inventory.forEach(item=>{ const card=document.createElement('div'); card.className='card'; card.innerHTML=`<div>${item.name}</div><div>В наличии: ${item.stock}</div><div>Цена: ${item.price} монет${item.discountQty?' (от '+item.discountQty+' шт: '+item.discountPrice+')':''}</div><button class='add-btn' onclick='addToCart("${item.name}",${item.price},${item.discountQty?item.discountQty:0},${item.discountPrice?item.discountPrice:0})'>Добавить в корзину</button>`; shop.appendChild(card); });}
 function addToCart(name,price,discountQty,discountPrice){ if(!cart[name]){cart[name]={qty:1,price:price,discountQty:discountQty,discountPrice:discountPrice};}else{cart[name].qty++;} renderCart(); animateAdd(name);}
 function changeQty(name,amount){cart[name].qty+=amount;if(cart[name].qty<=0) delete cart[name]; renderCart();}
@@ -128,22 +107,10 @@ if(type==='base'){
 }else if(type==='white'){
   document.body.style.background='white';
   document.querySelector('.cart').style.background='transparent';
-  document.getElementById('settingsPanel').style.background='#e0e0e0';
+  document.getElementById('settingsPanel').style.background='#1a001f';
   particles.forEach(p=>p.r=2);
 }}
-function toggleBlockBlast(){
- const win=document.getElementById('blockBlastWindow');
- win.style.display=win.style.display==='none'?'block':'none';
-}
-// Блок Бласт минимальная логика
-let bbScore=0; const bbBestScoreEl=document.getElementById('bbBestScore'); let bbBestScore=localStorage.getItem('bbBestScore')||0; bbBestScoreEl.innerText='Best: '+bbBestScore;
-const bbGame=document.getElementById('blockBlastGame');
-let bbActive=false;
-document.addEventListener('keydown', e=>{
- if(e.code==='Space' && bbActive){ bbScore++; if(bbScore>bbBestScore){bbBestScore=bbScore; localStorage.setItem('bbBestScore', bbBestScore); bbBestScoreEl.innerText='Best: '+bbBestScore;} }
-});
-bbGame.addEventListener('click', ()=>{ bbScore=0; bbActive=true; bbGame.innerText='Играй! Нажимай пробел!'; setTimeout(()=>{ bbActive=false; bbGame.innerText='Нажмите пробел чтобы играть'; },5000); });
 renderShop();
 </script>
 </body>
-        </html>
+</html>
