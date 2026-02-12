@@ -9,63 +9,75 @@ body {
     background: radial-gradient(circle at center, #2b0040 0%, #000 70%);
     color: white;
     display: flex;
-}/* Левая часть (магазин) */ .main { width: 75%; padding: 20px 40px; }
+    overflow-x: hidden;
+}.main { width: 60%; padding: 30px 40px; }
 
-.title { text-align: center; font-size: 38px; color: #a855ff; margin-bottom: 40px; }
+.title { text-align: center; font-size: 40px; color: #a855ff; margin-bottom: 50px; }
 
-.shop { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
+.shop { display: flex; gap: 35px; flex-wrap: wrap; justify-content: center; }
 
-.card { background: linear-gradient(145deg, #8b00ff, #6a00cc); width: 260px; padding: 18px; border-radius: 14px; color: black; font-weight: bold; transition: 0.25s ease; box-shadow: 0 0 15px rgba(160, 80, 255, 0.4); }
+.card { background: linear-gradient(145deg, #8b00ff, #6a00cc); width: 270px; padding: 20px; border-radius: 16px; color: black; font-weight: bold; transition: 0.25s ease; box-shadow: 0 0 15px rgba(160, 80, 255, 0.4); }
 
-.card:hover { transform: translateY(-8px); box-shadow: 0 0 30px rgba(190, 120, 255, 0.8); }
+.card:hover { transform: translateY(-8px); box-shadow: 0 0 35px rgba(190, 120, 255, 0.9); }
 
-.card div { margin: 6px 0; }
+.card div { margin: 8px 0; }
 
-button { margin-top: 10px; padding: 6px 10px; border: none; border-radius: 6px; cursor: pointer; background: black; color: #a855ff; font-weight: bold; }
+.add-btn { margin-top: 12px; padding: 10px; width: 100%; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 14px; background: linear-gradient(90deg, #000, #1a001f); color: #c084fc; transition: 0.2s ease; }
 
-button:hover { background: #1a001f; }
+.add-btn:hover { background: linear-gradient(90deg, #1a001f, #000); box-shadow: 0 0 15px #a855ff; }
 
-/* Корзина */ .cart { width: 25%; background: #120018; padding: 20px; border-left: 2px solid #6a00cc; box-shadow: -5px 0 15px rgba(150, 0, 255, 0.4); }
+.cart { width: 40%; min-height: 100vh; background: #120018; padding: 30px; border-left: 3px solid #6a00cc; box-shadow: -8px 0 20px rgba(150, 0, 255, 0.4); }
 
-.cart h2 { text-align: center; color: #a855ff; }
+.cart h2 { text-align: center; color: #a855ff; font-size: 28px; }
 
-.cart-item { margin: 15px 0; padding: 10px; background: #1f002b; border-radius: 8px; }
+.cart-item { margin: 18px 0; padding: 15px; background: #1f002b; border-radius: 12px; }
 
-.qty-control { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 5px; }
+.qty-control { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 8px; }
 
-.qty-control button { padding: 3px 8px; background: #a855ff; color: black; }
+.qty-control button { padding: 6px 12px; border: none; border-radius: 8px; background: #a855ff; color: black; font-weight: bold; cursor: pointer; transition: 0.2s; }
 
-.total { margin-top: 30px; font-size: 18px; font-weight: bold; text-align: center; color: #d8b4ff; }
+.qty-control button:hover { background: #c084fc; }
 
-.order-block { margin-top: 30px; text-align: center; }
+.total { margin-top: 40px; font-size: 20px; font-weight: bold; text-align: center; color: #e9d5ff; }
+
+.order-block { margin-top: 40px; text-align: center; }
 
 .order-block a { color: #a855ff; text-decoration: none; }
+
+#hamster { position: fixed; bottom: 10px; left: 50px; font-size: 40px; transition: transform 0.2s linear, left 0.5s linear; z-index: 999; }
 
 </style>
 </head>
 <body><div class="main">
     <div class="title">67Shop</div><div class="shop">
 
-    <div class="card">
+    <div class="card" id="beacon">
         <div>Маяк</div>
         <div>В наличии: 14</div>
         <div>Цена за шт: 10</div>
         <div>От 3 шт: 9</div>
-        <button onclick="addToCart('Маяк', 10, true)">Добавить в корзину</button>
+        <button class="add-btn" onclick="addToCart('Маяк', 10, true)">Добавить в корзину</button>
     </div>
 
-    <div class="card">
+    <div class="card" id="netherSet">
         <div>Незер сет брони</div>
         <div>В наличии: 6</div>
         <div>Цена за сет: 50</div>
-        <button onclick="addToCart('Незер сет брони', 50, false)">Добавить в корзину</button>
+        <button class="add-btn" onclick="addToCart('Незер сет брони', 50, false)">Добавить в корзину</button>
     </div>
 
-    <div class="card">
+    <div class="card" id="goldApple">
         <div>Зачарованные золотые яблоки</div>
         <div>В наличии: 30</div>
         <div>Цена за шт: 4</div>
-        <button onclick="addToCart('Золотые яблоки', 4, false)">Добавить в корзину</button>
+        <button class="add-btn" onclick="addToCart('Золотые яблоки', 4, false)">Добавить в корзину</button>
+    </div>
+
+    <div class="card" id="firework">
+        <div>Фаерверки</div>
+        <div>В наличии: 8 стаков</div>
+        <div>Цена за стак: 1</div>
+        <button class="add-btn" onclick="addToCart('Фаерверки', 1, false)">Добавить в корзину</button>
     </div>
 
 </div>
@@ -79,8 +91,14 @@ button:hover { background: #1a001f; }
     <h2>Корзина</h2>
     <div id="cartItems"></div>
     <div class="total" id="totalPrice">Итого: 0 монет</div>
-</div><script>
+</div><div id="hamster">🐹</div><script>
 let cart = {};
+let hamster = document.getElementById('hamster');
+let posX = 50;
+let direction = 1;
+let stopCounter = 0;
+
+let productIds = ['beacon','netherSet','goldApple','firework'];
 
 function addToCart(name, price, hasDiscount) {
     if (!cart[name]) {
@@ -105,7 +123,6 @@ function renderCart() {
     for (let name in cart) {
         let item = cart[name];
         let price = item.price;
-
         if (item.discount && item.qty >= 3) price = 9;
 
         let itemTotal = price * item.qty;
@@ -113,7 +130,7 @@ function renderCart() {
 
         cartDiv.innerHTML += `
             <div class="cart-item">
-                ${name}<br>
+                <b>${name}</b>
                 <div class="qty-control">
                     <button onclick="changeQty('${name}', -1)">-</button>
                     ${item.qty}
@@ -126,5 +143,33 @@ function renderCart() {
 
     document.getElementById('totalPrice').innerText = 'Итого: ' + total + ' монет';
 }
+
+// Хомяк с остановками и указывающий на товар
+function moveHamster() {
+    if (stopCounter > 0) {
+        stopCounter--;
+        return;
+    }
+
+    const maxWidth = window.innerWidth - 50;
+    posX += (Math.random() * 20 + 5) * direction;
+
+    if (posX <= 0 || posX >= maxWidth) {
+        direction *= -1;
+        hamster.style.transform = `rotate(${Math.random()*40-20}deg)`;
+    }
+
+    // Рандомная остановка и указание на товар
+    if (Math.random() < 0.1) {
+        stopCounter = Math.floor(Math.random()*4 + 2);
+        let target = document.getElementById(productIds[Math.floor(Math.random()*productIds.length)]);
+        let rect = target.getBoundingClientRect();
+        posX = rect.left + rect.width/2 - 20;
+    }
+
+    hamster.style.left = posX + 'px';
+}
+
+setInterval(moveHamster, 500);
 </script></body>
-        </html>
+    </html>
