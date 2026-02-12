@@ -11,176 +11,91 @@ body {
     display: flex;
     overflow-x: hidden;
     position: relative;
-}/* Партиклы */ #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+}#particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
-.main { width: 60%; padding: 30px 40px; z-index: 1; }
+.main { width: 55%; padding: 20px 30px; z-index: 1; }
 
-.title { text-align: center; font-size: 40px; color: #a855ff; margin-bottom: 20px; }
+.title { text-align: center; font-size: 36px; color: #a855ff; margin-bottom: 20px; }
 
-.controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 
-.controls input { padding: 8px 12px; border-radius: 8px; border: none; width: 200px; font-size: 14px; }
+.controls input { padding: 6px 10px; border-radius: 8px; border: none; width: 180px; font-size: 14px; }
 
-.controls button { padding: 8px 12px; border-radius: 8px; border: none; background: #6a00cc; color: black; font-weight: bold; cursor: pointer; transition: 0.2s; }
+.controls button { padding: 6px 10px; border-radius: 8px; border: none; background: #6a00cc; color: black; font-weight: bold; cursor: pointer; transition: 0.2s; }
 
 .controls button:hover { background: #8b00ff; }
 
-.shop { display: flex; gap: 35px; flex-wrap: wrap; justify-content: center; }
+.shop { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; }
 
-.card { background: linear-gradient(145deg, #8b00ff, #6a00cc); width: 270px; padding: 20px; border-radius: 16px; color: black; font-weight: bold; transition: 0.25s ease; box-shadow: 0 0 15px rgba(160, 80, 255, 0.4); position: relative; }
+.card { background: linear-gradient(145deg, #8b00ff, #6a00cc); width: 250px; padding: 18px; border-radius: 16px; color: black; font-weight: bold; transition: 0.25s ease; box-shadow: 0 0 15px rgba(160, 80, 255, 0.4); position: relative; } .card:hover { transform: translateY(-6px); box-shadow: 0 0 25px rgba(190, 120, 255, 0.7); } .card div { margin: 6px 0; } .add-btn { margin-top: 10px; padding: 8px; width: 100%; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 14px; background: linear-gradient(90deg, #000, #1a001f); color: #c084fc; transition: 0.2s ease; } .add-btn:hover { background: linear-gradient(90deg, #1a001f, #000); box-shadow: 0 0 10px #a855ff; }
 
-.card:hover { transform: translateY(-8px); box-shadow: 0 0 35px rgba(190, 120, 255, 0.9); }
+.cart { width: 30%; min-height: 100vh; background: #120018; padding: 20px; border-left: 3px solid #6a00cc; box-shadow: -6px 0 15px rgba(150, 0, 255, 0.4); z-index: 1; } .cart h2 { text-align: center; color: #a855ff; font-size: 26px; } .cart-item { margin: 15px 0; padding: 12px; background: #1f002b; border-radius: 12px; transition: 0.3s; } .qty-control { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 6px; } .qty-control button { padding: 5px 10px; border: none; border-radius: 8px; background: #a855ff; color: black; font-weight: bold; cursor: pointer; transition: 0.2s; } .qty-control button:hover { background: #c084fc; } .total { margin-top: 30px; font-size: 18px; font-weight: bold; text-align: center; color: #e9d5ff; } .order-block { margin-top: 30px; text-align: center; } .order-block a { color: #a855ff; text-decoration: none; } #profileBtn { position: fixed; top: 20px; right: 20px; background: #6a00cc; color: black; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 24px; z-index: 2; } #profilePanel { display: none; position: fixed; top: 75px; right: 20px; width: 280px; height: 420px; background: #1a001f; border: 2px solid #6a00cc; border-radius: 16px; padding: 12px; z-index: 2; overflow-y: auto; } .game-text { text-align: center; margin-top: 15px; font-size: 18px; transition: font-size 0.3s; } #settingsBtn { position: fixed; bottom: 20px; left: 20px; background: #6a00cc; color: black; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 24px; z-index:2; } #settingsPanel { display:none; position: fixed; bottom:70px; left:20px; width:200px; background:#1a001f; border:2px solid #6a00cc; border-radius:12px; padding:10px; z-index:2; } #settingsPanel button { margin:5px; padding:5px 10px; border:none; border-radius:8px; cursor:pointer; background:#6a00cc; color:black; font-weight:bold; } </style>
 
-.card div { margin: 8px 0; }
-
-.add-btn { margin-top: 12px; padding: 10px; width: 100%; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 14px; background: linear-gradient(90deg, #000, #1a001f); color: #c084fc; transition: 0.2s ease; }
-
-.add-btn:hover { background: linear-gradient(90deg, #1a001f, #000); box-shadow: 0 0 15px #a855ff; }
-
-.cart { width: 35%; min-height: 100vh; background: #120018; padding: 30px; border-left: 3px solid #6a00cc; box-shadow: -8px 0 20px rgba(150, 0, 255, 0.4); z-index: 1; }
-
-.cart h2 { text-align: center; color: #a855ff; font-size: 28px; }
-
-.cart-item { margin: 18px 0; padding: 15px; background: #1f002b; border-radius: 12px; transition: 0.3s; }
-
-.qty-control { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 8px; }
-
-.qty-control button { padding: 6px 12px; border: none; border-radius: 8px; background: #a855ff; color: black; font-weight: bold; cursor: pointer; transition: 0.2s; }
-
-.qty-control button:hover { background: #c084fc; }
-
-.total { margin-top: 40px; font-size: 20px; font-weight: bold; text-align: center; color: #e9d5ff; }
-
-.order-block { margin-top: 40px; text-align: center; }
-
-.order-block a { color: #a855ff; text-decoration: none; }
-
-@keyframes particleMove { 0% { transform: translateY(0px); opacity: 0.5; } 50% { transform: translateY(-20px); opacity: 1; } 100% { transform: translateY(0px); opacity: 0.5; } }
-
-.particle { position: absolute; width: 3px; height: 3px; background: white; border-radius: 50%; animation: particleMove linear infinite; }
-
-</style>
 </head>
-<body><canvas id="particles"></canvas>
-
+<body>
+<canvas id="particles"></canvas>
 <div class="main">
-    <div class="title">67Shop</div><div class="controls">
-    <input type="text" id="search" placeholder="Поиск..." oninput="filterItems()">
-    <button onclick="sortByPrice()" id="sortBtn">Сортировать по цене ↑</button>
+    <div class="title">67Shop</div>
+    <div class="controls">
+        <input type="text" id="search" placeholder="Поиск..." oninput="filterItems()">
+        <button onclick="sortByPrice()" id="sortBtn">Сортировать по цене ↑</button>
+    </div>
+    <div class="shop" id="shop"></div>
+    <div class="order-block">
+        Сделать заказы тут:<br>
+        <a href="https://discord.gg/QcfekhuEU" target="_blank">https://discord.gg/QcfekhuEU</a>
+    </div>
 </div>
-
-<div class="shop" id="shop"></div>
-
-<div class="order-block">
-    Сделать заказы тут:<br>
-    <a href="https://discord.gg/QcfekhuEU" target="_blank">https://discord.gg/QcfekhuEU</a>
-</div>
-
-</div><div class="cart">
+<div class="cart">
     <h2>Корзина</h2>
+    <button onclick="clearCart()" style="margin-bottom:10px; background:#a855ff; color:black; width:100%; padding:8px; border:none; border-radius:8px; cursor:pointer;">Очистить корзину</button>
     <div id="cartItems"></div>
     <div class="total" id="totalPrice">Итого: 0 монет</div>
-</div><script>
+</div>
+<button id="profileBtn" onclick="toggleProfile()">👤</button>
+<div id="profilePanel">
+    <h3>Профиль игрока</h3>
+    <div>
+        <label>Ник: <input type='text' id='nickname' placeholder='Аноним'></label>
+    </div>
+    <div class="games">
+        <h4>Игры</h4>
+        <div><button onclick="startBlockBlast()">Блок Бласт</button></div>
+        <div style="margin-top:10px;"><button onclick="startSpaceBarGame()">Кнопка</button>
+        <div class="game-text" id="spaceBarText">нажмите пробел чтобы играть</div></div>
+    </div>
+    <div class="top-scores" style="margin-top:15px;">
+        <h4>Топы</h4>
+        <div>Выберите игру для просмотра рекордов</div>
+    </div>
+</div>
+<button id='settingsBtn' onclick='toggleSettings()'>⚙️</button>
+<div id='settingsPanel'>
+    <div>Выберите фон:</div>
+    <button onclick='setBackground("base")'>Базовый</button>
+    <button onclick='setBackground("black")'>Черный</button>
+    <button onclick='setBackground("white")'>Белый</button>
+</div>
+<script>
 let inventory = [
     { name: "Маяк", price: 10, stock: 14, discountQty: 3, discountPrice: 9 },
     { name: "Незер сет брони", price: 50, stock: 6 },
     { name: "Зачарованные золотые яблоки", price: 4, stock: 30 },
     { name: "Фаерверки", price: 1, stock: 8 }
 ];
-
-let cart = {};
-let sortAsc = true;
-
-function renderShop() {
-    const shop = document.getElementById('shop');
-    shop.innerHTML = '';
-    inventory.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `<div>${item.name}</div><div>В наличии: ${item.stock}</div><div>Цена: ${item.price} монет${item.discountQty ? ' (от ' + item.discountQty + ' шт: ' + item.discountPrice + ')' : ''}</div><button class='add-btn' onclick='addToCart("${item.name}", ${item.price}, ${item.discountQty ? item.discountQty : 0}, ${item.discountPrice ? item.discountPrice : 0})'>Добавить в корзину</button>`;
-        shop.appendChild(card);
-    });
-}
-
-function addToCart(name, price, discountQty, discountPrice) {
-    if (!cart[name]) {
-        cart[name] = { qty: 1, price: price, discountQty: discountQty, discountPrice: discountPrice };
-    } else {
-        cart[name].qty++;
-    }
-    renderCart();
-    animateAdd(name);
-}
-
-function changeQty(name, amount) {
-    cart[name].qty += amount;
-    if (cart[name].qty <= 0) delete cart[name];
-    renderCart();
-}
-
-function renderCart() {
-    const cartDiv = document.getElementById('cartItems');
-    cartDiv.innerHTML = '';
-    let total = 0;
-    for (let name in cart) {
-        let item = cart[name];
-        let price = item.price;
-        if (item.discountQty && item.qty >= item.discountQty) price = item.discountPrice;
-        let itemTotal = price * item.qty;
-        total += itemTotal;
-        cartDiv.innerHTML += `<div class='cart-item'><b>${name}</b><div class='qty-control'><button onclick='changeQty("${name}", -1)'>-</button>${item.qty}<button onclick='changeQty("${name}", 1)'>+</button></div>${itemTotal} монет</div>`;
-    }
-    document.getElementById('totalPrice').innerText = 'Итого: ' + total + ' монет';
-}
-
-function sortByPrice() {
-    sortAsc = !sortAsc;
-    inventory.sort((a,b) => sortAsc ? a.price - b.price : b.price - a.price);
-    document.getElementById('sortBtn').innerText = sortAsc ? 'Сортировать по цене ↑' : 'Сортировать по цене ↓';
-    renderShop();
-}
-
-function filterItems() {
-    const search = document.getElementById('search').value.toLowerCase();
-    const filtered = inventory.filter(i => i.name.toLowerCase().includes(search));
-    const shop = document.getElementById('shop');
-    shop.innerHTML = '';
-    filtered.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `<div>${item.name}</div><div>В наличии: ${item.stock}</div><div>Цена: ${item.price} монет${item.discountQty ? ' (от ' + item.discountQty + ' шт: ' + item.discountPrice + ')' : ''}</div><button class='add-btn' onclick='addToCart("${item.name}", ${item.price}, ${item.discountQty ? item.discountQty : 0}, ${item.discountPrice ? item.discountPrice : 0})'>Добавить в корзину</button>`;
-        shop.appendChild(card);
-    });
-}
-
-// Партиклы
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let particles = [];
-for(let i=0;i<150;i++){
-    particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1});
-}
-function drawParticles(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle='white';
-    particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();p.y-=0.5;if(p.y<0)p.y=canvas.height;});
-    requestAnimationFrame(drawParticles);
-}
-drawParticles();
-
-// Эффект при добавлении в корзину
-function animateAdd(name){
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card=>{
-        if(card.innerText.includes(name)){
-            card.style.transform='scale(1.05)';
-            setTimeout(()=>{card.style.transform='scale(1)';},300);
-        }
-    });
-}
-
+let cart = {}, sortAsc = true;
+function renderShop(){const shop=document.getElementById('shop'); shop.innerHTML=''; inventory.forEach(item=>{ const card=document.createElement('div'); card.className='card'; card.innerHTML=`<div>${item.name}</div><div>В наличии: ${item.stock}</div><div>Цена: ${item.price} монет${item.discountQty?' (от '+item.discountQty+' шт: '+item.discountPrice+')':''}</div><button class='add-btn' onclick='addToCart("${item.name}",${item.price},${item.discountQty?item.discountQty:0},${item.discountPrice?item.discountPrice:0})'>Добавить в корзину</button>`; shop.appendChild(card); });}
+function addToCart(name,price,discountQty,discountPrice){ if(!cart[name]){cart[name]={qty:1,price:price,discountQty:discountQty,discountPrice:discountPrice};}else{cart[name].qty++;} renderCart(); animateAdd(name);}
+function changeQty(name,amount){cart[name].qty+=amount;if(cart[name].qty<=0) delete cart[name]; renderCart();}
+function renderCart(){const cartDiv=document.getElementById('cartItems'); cartDiv.innerHTML=''; let total=0; for(let name in cart){let item=cart[name]; let price=item.price; if(item.discountQty&&item.qty>=item.discountQty) price=item.discountPrice; let itemTotal=price*item.qty; total+=itemTotal; cartDiv.innerHTML+=`<div class='cart-item'><b>${name}</b><div class='qty-control'><button onclick='changeQty("${name}",-1)'>-</button>${item.qty}<button onclick='changeQty("${name}",1)'>+</button></div>${itemTotal} монет</div>`;} document.getElementById('totalPrice').innerText='Итого: '+total+' монет';}
+function clearCart(){cart={}; renderCart();}
+function sortByPrice(){sortAsc=!sortAsc; inventory.sort((a,b)=>sortAsc?a.price-b.price:b.price-a.price); document.getElementById('sortBtn').innerText=sortAsc?'Сортировать по цене ↑':'Сортировать по цене ↓'; renderShop();}
+function filterItems(){const search=document.getElementById('search').value.toLowerCase(); const filtered=inventory.filter(i=>i.name.toLowerCase().includes(search)); const shop=document.getElementById('shop'); shop.innerHTML=''; filtered.forEach(item=>{ const card=document.createElement('div'); card.className='card'; card.innerHTML=`<div>${item.name}</div><div>В наличии: ${item.stock}</div><div>Цена: ${item.price} монет${item.discountQty?' (от '+item.discountQty+' шт: '+item.discountPrice+')':''}</div><button class='add-btn' onclick='addToCart("${item.name}",${item.price},${item.discountQty?item.discountQty:0},${item.discountPrice?item.discountPrice:0})'>Добавить в корзину</button>`; shop.appendChild(card); });}
+const canvas=document.getElementById('particles'); const ctx=canvas.getContext('2d'); canvas.width=window.innerWidth; canvas.height=window.innerHeight; let particles=[]; for(let i=0;i<150;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1});} function drawParticles(){ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle='white'; particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill(); p.y-=0.5;if(p.y<0)p.y=canvas.height;}); requestAnimationFrame(drawParticles);} drawParticles(); function animateAdd(name){ const cards=document.querySelectorAll('.card'); cards.forEach(card=>{if(card.innerText.includes(name)){ card.style.transform='scale(1.05)'; setTimeout(()=>{card.style.transform='scale(1)';},300);}})} function toggleProfile(){ const panel=document.getElementById('profilePanel'); panel.style.display=panel.style.display==='none'?'block':'none'; }
+function startSpaceBarGame(){ let spaceBarText=document.getElementById('spaceBarText'); spaceBarText.innerText='нажмите пробел чтобы играть'; spaceBarText.style.fontSize='18px'; setTimeout(()=>{ spaceBarText.style.background='red'; spaceBarText.dataset.start=Date.now(); spaceBarText.dataset.active='true';},Math.random()*2000+1000);} document.addEventListener('keydown',function(e){ if(e.code==='Space'){ let spaceBarText=document.getElementById('spaceBarText'); if(spaceBarText.dataset.active==='true'){ let time=(Date.now()-spaceBarText.dataset.start)/1000; spaceBarText.innerText=`Время реакции: ${time.toFixed(3)} с`; spaceBarText.dataset.active='false'; let size=parseInt(spaceBarText.style.fontSize); spaceBarText.style.fontSize=(size+4)+'px'; setTimeout(()=>{spaceBarText.style.fontSize='18px';},300);}}});
+function toggleSettings(){ const panel=document.getElementById('settingsPanel'); panel.style.display=panel.style.display==='none'?'block':'none';}
+function setBackground(type){if(type==='base'){document.body.style.background='radial-gradient(circle at center, #2b0040 0%, #000 70%)';} else if(type==='black'){document.body.style.background='black'; particles.forEach(p=>p.r=2);} else if(type==='white'){document.body.style.background='white'; particles.forEach(p=>p.r=2);}}
 renderShop();
-</script></body>
+</script>
+</body>
 </html>
