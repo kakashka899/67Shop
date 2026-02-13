@@ -161,14 +161,19 @@ z-index: 9998;
 background: radial-gradient(circle, #d8a8ff, #7b2cff);
 }
 .ench-title{
-color:#7c3aed;
-font-weight:bold;
+display:block;
+background:#7c3aed;
+padding:6px 10px;
+border-radius:8px;
 cursor:pointer;
+font-weight:bold;
+color:white;
+text-align:center;
+margin-top:8px;
 transition:.2s;
 }
 .ench-title:hover{
-color:#a855ff;
-text-shadow:0 0 8px rgba(168,85,255,.7);
+background:#a855ff;
 }
 .ench{
 overflow:hidden;
@@ -205,7 +210,7 @@ z-index: -2;
 <h2>Корзина</h2>
 <div id="cartItems"></div>
 <div class="total" id="total">Итого: 0 монет</div>
-<button class="order-btn" onclick="window.open('https://discord.gg/QcfekhuEU','_blank')">Сделать заказ</button>
+<button class="order-btn" onclick="window.open('https://discord.gg/nKNsC2rw3','_blank')">Сделать заказ</button>
 </div><script>
 let inventory=[
 {name:"Маяк",price:10,stock:14,discount:3,discountPrice:9},
@@ -225,13 +230,13 @@ const card=document.createElement("div");
 card.className="card product-card";
 let ench="";
 if(item.armor){
-ench=`<details class="ench"><summary class="ench-title">Шлем</summary>Защита 4<br>Прочность 3<br>Починка<br>Подводное дыхание 3<br>Подводник</details>
-<details class="ench"><summary class="ench-title">Нагрудник</summary>Защита 4<br>Прочность 3<br>Починка</details>
-<details class="ench"><summary class="ench-title">Штаны</summary>Защита 4<br>Прочность 3<br>Починка</details>
-<details class="ench"><summary class="ench-title">Ботинки</summary>Защита 4<br>Прочность 3<br>Починка<br>Подводная ходьба 3<br>Невесомость 4</details>`;
+ench=`<details class="ench"><summary class="ench-title">Шлем &#9662;</summary>Защита 4<br>Прочность 3<br>Починка<br>Подводное дыхание 3<br>Подводник</details>
+<details class="ench"><summary class="ench-title">Нагрудник &#9662;</summary>Защита 4<br>Прочность 3<br>Починка</details>
+<details class="ench"><summary class="ench-title">Штаны &#9662;</summary>Защита 4<br>Прочность 3<br>Починка</details>
+<details class="ench"><summary class="ench-title">Ботинки &#9662;</summary>Защита 4<br>Прочность 3<br>Починка<br>Подводная ходьба 3<br>Невесомость 4</details>`;
 }
 if(item.pickaxe){
-ench=`<details class="ench"><summary class="ench-title">Зачарования кирки</summary>Эффективность 5<br>Прочность 3<br>Починка<br>Шелковое касание</details>`;
+ench=`<details class="ench"><summary class="ench-title">Зачарования кирки &#9662;</summary>Эффективность 5<br>Прочность 3<br>Починка<br>Шелковое касание</details>`;
 }
 card.innerHTML=`<div class="product-title">${item.name}</div>
 <div>В наличии: ${item.stock}</div>
