@@ -77,40 +77,43 @@ body {
 <script>
 let inventory = [
     { name: "Маяк", price: 10, stock: 14, discountQty: 3, discountPrice: 9 },
-    { name: "Незер сет брони", price: 50, stock: 6 },
+    { name: "Незер сет брони", price: 50, stock: 6, armor: true },
     { name: "Зачарованные золотые яблоки", price: 4, stock: 30 },
     { name: "Фаерверки", price: 1, stock: 8 },
     { name: "Незеритовая кирка", price: 15, stock: 7 }
 ];
 let cart = {}, sortAsc = true;
-function renderShop(){const shop=document.getElementById('shop'); shop.innerHTML=''; inventory.forEach(item=>{ const card=document.createElement('div'); card.className='card'; card.innerHTML=`<div>${item.name}</div><div>В наличии: ${item.stock}</div><div>Цена: ${item.price} монет${item.discountQty?' (от '+item.discountQty+' шт: '+item.discountPrice+')':''}</div><button class='add-btn' onclick='addToCart("${item.name}",${item.price},${item.discountQty?item.discountQty:0},${item.discountPrice?item.discountPrice:0})'>Добавить в корзину</button>`; shop.appendChild(card); });}
-function addToCart(name,price,discountQty,discountPrice){ if(!cart[name]){cart[name]={qty:1,price:price,discountQty:discountQty,discountPrice:discountPrice};}else{cart[name].qty++;} renderCart(); animateAdd(name);}
-function changeQty(name,amount){cart[name].qty+=amount;if(cart[name].qty<=0) delete cart[name]; renderCart();}
-function renderCart(){const cartDiv=document.getElementById('cartItems'); cartDiv.innerHTML=''; let total=0; for(let name in cart){let item=cart[name]; let price=item.price; if(item.discountQty&&item.qty>=item.discountQty) price=item.discountPrice; let itemTotal=price*item.qty; total+=itemTotal; cartDiv.innerHTML+=`<div class='cart-item'><b>${name}</b><div class='qty-control'><button onclick='changeQty("${name}",-1)'>-</button>${item.qty}<button onclick='changeQty("${name}",1)'>+</button></div>${itemTotal} монет</div>`;} document.getElementById('totalPrice').innerText='Итого: '+total+' монет';}
-function clearCart(){cart={}; renderCart();}
-function sortByPrice(){sortAsc=!sortAsc; inventory.sort((a,b)=>sortAsc?a.price-b.price:b.price-a.price); document.getElementById('sortBtn').innerText=sortAsc?'Сортировать по цене ↑':'Сортировать по цене ↓'; renderShop();}
-function filterItems(){const search=document.getElementById('search').value.toLowerCase(); const filtered=inventory.filter(i=>i.name.toLowerCase().includes(search)); const shop=document.getElementById('shop'); shop.innerHTML=''; filtered.forEach(item=>{ const card=document.createElement('div'); card.className='card'; card.innerHTML=`<div>${item.name}</div><div>В наличии: ${item.stock}</div><div>Цена: ${item.price} монет${item.discountQty?' (от '+item.discountQty+' шт: '+item.discountPrice+')':''}</div><button class='add-btn' onclick='addToCart("${item.name}",${item.price},${item.discountQty?item.discountQty:0},${item.discountPrice?item.discountPrice:0})'>Добавить в корзину</button>`; shop.appendChild(card); });}
-const canvas=document.getElementById('particles'); const ctx=canvas.getContext('2d'); canvas.width=window.innerWidth; canvas.height=window.innerHeight; let particles=[]; for(let i=0;i<150;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1});} function drawParticles(){ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle='white'; particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill(); p.y-=0.5;if(p.y<0)p.y=canvas.height;}); requestAnimationFrame(drawParticles);} drawParticles();
-function animateAdd(name){ const cards=document.querySelectorAll('.card'); cards.forEach(card=>{if(card.innerText.includes(name)){ card.style.transform='scale(1.05)'; setTimeout(()=>{card.style.transform='scale(1)';},300);}})}
-function toggleSettings(){ const panel=document.getElementById('settingsPanel'); panel.style.display=panel.style.display==='none'?'block':'none';}
-function setBackground(type){
-if(type==='base'){
-  document.body.style.background='radial-gradient(circle at center, #2b0040 0%, #000 70%)';
-  document.querySelector('.cart').style.background='transparent';
-  document.getElementById('settingsPanel').style.background='#1a001f';
-  particles.forEach(p=>p.r=2);
-}else if(type==='black'){
-  document.body.style.background='black';
-  document.querySelector('.cart').style.background='transparent';
-  document.getElementById('settingsPanel').style.background='#1a001f';
-  particles.forEach(p=>p.r=2);
-}else if(type==='white'){
-  document.body.style.background='white';
-  document.querySelector('.cart').style.background='transparent';
-  document.getElementById('settingsPanel').style.background='#1a001f';
-  particles.forEach(p=>p.r=2);
-}}
-renderShop();
-</script>
+function renderShop(){
+const shop=document.getElementById('shop');
+shop.innerHTML='';inventory.forEach(item=>{ const card=document.createElement('div'); card.className='card';
+
+let extra = "";
+
+if(item.armor){ extra = `
+
+<details><summary>Шлем</summary>
+Защита 4<br>Прочность 3<br>Починка<br>Подводное дыхание 3<br>Подводник
+</details>
+<details><summary>Нагрудник</summary>
+Защита 4<br>Прочность 3<br>Починка
+</details>
+<details><summary>Штаны</summary>
+Защита 4<br>Прочность 3<br>Починка
+</details>
+<details><summary>Ботинки</summary>
+Защита 4<br>Прочность 3<br>Починка<br>Подводная ходьба 3<br>Невесомость 4
+</details>
+`;
+}card.innerHTML=`
+
+<div>${item.name}</div>
+<div>В наличии: ${item.stock}</div>
+<div>Цена: ${item.price} монет${item.discountQty?' (от '+item.discountQty+' шт: '+item.discountPrice+')':''}</div>
+${extra}
+<button class='add-btn' onclick='addToCart("${item.name}",${item.price},${item.discountQty?item.discountQty:0},${item.discountPrice?item.discountPrice:0})'>Добавить в корзину</button>
+`;shop.appendChild(card); }); }
+
+function addToCart(name,price,discountQty,discountPrice){ if(!cart[name]){cart[name]={qty:1,price:price,discountQty:discountQty,discountPrice:discountPrice};}else{cart[name].qty++;} renderCart(); animateAdd(name);} function changeQty(name,amount){cart[name].qty+=amount;if(cart[name].qty<=0) delete cart[name]; renderCart();} function renderCart(){const cartDiv=document.getElementById('cartItems'); cartDiv.innerHTML=''; let total=0; for(let name in cart){let item=cart[name]; let price=item.price; if(item.discountQty&&item.qty>=item.discountQty) price=item.discountPrice; let itemTotal=price*item.qty; total+=itemTotal; cartDiv.innerHTML+=<div class='cart-item'><b>${name}</b><div class='qty-control'><button onclick='changeQty("${name}",-1)'>-</button>${item.qty}<button onclick='changeQty("${name}",1)'>+</button></div>${itemTotal} монет</div>;} document.getElementById('totalPrice').innerText='Итого: '+total+' монет';} function clearCart(){cart={}; renderCart();} function sortByPrice(){sortAsc=!sortAsc; inventory.sort((a,b)=>sortAsc?a.price-b.price:b.price-a.price); document.getElementById('sortBtn').innerText=sortAsc?'Сортировать по цене ↑':'Сортировать по цене ↓'; renderShop();} function filterItems(){const search=document.getElementById('search').value.toLowerCase(); const filtered=inventory.filter(i=>i.name.toLowerCase().includes(search)); const shop=document.getElementById('shop'); shop.innerHTML=''; filtered.forEach(item=>{ const card=document.createElement('div'); card.className='card'; card.innerHTML=<div>${item.name}</div><div>В наличии: ${item.stock}</div><div>Цена: ${item.price} монет${item.discountQty?' (от '+item.discountQty+' шт: '+item.discountPrice+')':''}</div><button class='add-btn' onclick='addToCart("${item.name}",${item.price},${item.discountQty?item.discountQty:0},${item.discountPrice?item.discountPrice:0})'>Добавить в корзину</button>; shop.appendChild(card); });} const canvas=document.getElementById('particles'); const ctx=canvas.getContext('2d'); canvas.width=window.innerWidth; canvas.height=window.innerHeight; let particles=[]; for(let i=0;i<150;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()2+1});} function drawParticles(){ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle='white'; particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI2);ctx.fill(); p.y-=0.5;if(p.y<0)p.y=canvas.height;}); requestAnimationFrame(drawParticles);} drawParticles(); function animateAdd(name){ const cards=document.querySelectorAll('.card'); cards.forEach(card=>{if(card.innerText.includes(name)){ card.style.transform='scale(1.05)'; setTimeout(()=>{card.style.transform='scale(1)';},300);}})} function toggleSettings(){ const panel=document.getElementById('settingsPanel'); panel.style.display=panel.style.display==='none'?'block':'none';} function setBackground(type){ if(type==='base'){ document.body.style.background='radial-gradient(circle at center, #2b0040 0%, #000 70%)'; document.querySelector('.cart').style.background='transparent'; document.getElementById('settingsPanel').style.background='#1a001f'; particles.forEach(p=>p.r=2); }else if(type==='black'){ document.body.style.background='black'; document.querySelector('.cart').style.background='transparent'; document.getElementById('settingsPanel').style.background='#1a001f'; particles.forEach(p=>p.r=2); }else if(type==='white'){ document.body.style.background='white'; document.querySelector('.cart').style.background='transparent'; document.getElementById('settingsPanel').style.background='#1a001f'; particles.forEach(p=>p.r=2); }} renderShop(); </script>
+
 </body>
 </html>
